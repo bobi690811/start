@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background-color: #808080; }
+        h1 { font-size: 24px; text-align: center; }
+        .news-container { margin: 20px auto; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); max-width: 800px; }
+        .news-item { margin-bottom: 15px; padding: 10px; border-bottom: 1px solid #ccc; }
+        .news-item a { text-decoration: none; color: #0073e6; font-weight: bold; display: block; }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strona Startowa</title>
+    <style>
+        body {
+            background-image: url('https://source.unsplash.com/1920x1080/?sea');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .container {
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-start;
+            margin: 20px;
+        }
+        .sidebar {
+            width: 20%;
+            text-align: center;
+        }
+        .content {
+            width: 70%;
+            text-align: left;
+        }
+        .links {
+            margin-bottom: 20px;
+        }
+        h2 {
+            border-bottom: 1px solid white;
+            padding-bottom: 5px;
+        }
+        .events {
+            margin-top: 40px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <canvas id="clock" width="150" height="150"></canvas>
+            <p id="date"></p>
+            <p id="time"></p>
+        </div>
+        <div class="content">
+            <h2>~~~~~~~~~~~</h2>
+            <ul id="news"></ul>
+            
+            <div class="links">
+                <h2>---------</h2>
+                <ul>
+                    <li><a href="http://10.6.1.8/intranet/"target="_blank">Intranet</a></li>
+                    <li><a href="https://eskulapnt.uskp.local/Eskulap/Form" target="_blank">Eskulap</a></li>
+                    <li><a href="http://10.6.1.7/pmnkeam/form0.php?dok=f001&op=Karty%20ambulatoryjnego%20leczenia%20131-I" target="_blank">---J O D Y ---</a></li>
+                    <li><a href="https://gabinet.gov.pl/zaloguj/uzytkownik" target="_blank">Gabinet Gov</a></li>
+                    <li><a href="https://xofigo.bayer.com/xofigo/index.jsp" target="_blank">Xofigo Bayer</a></li>
+                    <li><a href="https://poczta.ump.edu.pl/#1" target="_blank">Poczta UMP</a></li>
+                    <li><a href="file://pm1.uskp.local/Profiles/roleksa/Documents/Rad.xlsx" target="_blank">rad</a></li>
+                    <li><a href="https://www.zus.pl/ezus/logowanie" target="_blank">ZUS e-ZUS</a></li>
+                    <li><a href="https://10.6.8.4/" target="_blank">CLININET</a></li>
+                    <li><a href="http://10.6.8.15/iCentrum/index.php?page=" target="_blank">iCentrum</a></li>
+                </ul>
+            </div>
+            <div class="links">
+                <h2>+++++++++</h2>
+                <ul>
+		    <li><a href="https://drive.google.com/drive/my-drive" target="_blank">Google Drive</a></li>
+                    <li><a href="https://www.jazzradio.com/smoothjazz" target="_blank">Jazz Radio</a></li>
+                    <li><a href="https://open.spotify.com/" target="_blank">Spotify</a></li>
+                    <li><a href="https://myradioonline.pl/tok-fm" target="_blank">Radio</a></li>
+<li><a href="https://chomikuj.pl/">Ch---</a></li>
+                </ul>
+            </div>
+            <div class="links">
+                <h2>Org----</h2>
+                <ul>
+                    <li><a href="https://calendar.google.com/calendar/u/0/r/month" target="_blank">Google Kalendarz</a></li>
+                    <li><a href="https://accounts.evernote.com/login" target="_blank">Evernote</a></li>
+                </ul>
+            </div>
+            <div class="links">
+                <h2>OStr==</h2>
+                <ul>
+                    <li><a href="https://eu.mydlink.com/login" target="_blank">MyDlink</a></li>
+                    <li><a href="https://emodul.eu/web/70659c94c1c5196c4e94b259ef0c75f1/home" target="_blank">eModul</a></li>
+                </ul>
+            </div>
+            <div class="links">
+                <h2>TŁUMACZ</h2>
+                <ul>
+                    <li><a href="https://translate.google.com/?sl=en&tl=pl&op=translate" target="_blank" rel="noopener noreferrer">
+    Otwórz Google Tłumacz (EN → PL)
+</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function updateClock() {
+            const canvas = document.getElementById("clock");
+            const ctx = canvas.getContext("2d");
+            const now = new Date();
+            const hours = now.getHours();
+            const minutes = now.getMinutes();
+            const seconds = now.getSeconds();
+            
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.beginPath();
+            ctx.arc(75, 75, 70, 0, Math.PI * 2);
+            ctx.stroke();
+            
+            function drawHand(length, angle, width) {
+                ctx.beginPath();
+                ctx.lineWidth = width;
+                ctx.moveTo(75, 75);
+                ctx.lineTo(75 + length * Math.cos(angle - Math.PI / 2), 75 + length * Math.sin(angle - Math.PI / 2));
+                ctx.stroke();
+            }
+            drawHand(30, (Math.PI / 6) * hours + (Math.PI / 360) * minutes, 4);
+            drawHand(45, (Math.PI / 30) * minutes, 3);
+            drawHand(50, (Math.PI / 30) * seconds, 2);
+            
+            document.getElementById("time").innerText = now.toLocaleTimeString("pl-PL");
+            document.getElementById("date").innerText = now.toLocaleDateString("pl-PL", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+    </script>
+<h1>~~~~~~~~~~~</h1>
+    <div class="news-container" id="news-container">
+        <p>Ładowanie wiadomości...</p>
+    </div>
+
+
+    <script>
+        async function fetchNews() {
+            try {
+                const proxyUrl = "https://api.allorigins.win/raw?url=";
+                const rssUrl = "https://www.politico.eu/feed/"; // RSS dla wiadomości politycznych
+                const response = await fetch(proxyUrl + encodeURIComponent(rssUrl));
+                if (!response.ok) throw new Error("Błąd sieci");
+                const text = await response.text();
+                
+                const parser = new DOMParser();
+                const xml = parser.parseFromString(text, "application/xml");
+                const items = xml.querySelectorAll("item");
+                
+                let newsHtml = "";
+                for (let i = 0; i < Math.min(5, items.length); i++) {
+                    const item = items[i];
+                    let title = item.querySelector("title").textContent;
+                    const link = item.querySelector("link").textContent;
+                    
+                    // Tłumaczenie tytułów na język polski za pomocą API Google Translate
+                    const translateResponse = await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(title)}&langpair=en|pl`);
+                    const translateData = await translateResponse.json();
+                    if (translateData.responseData.translatedText) {
+                        title = translateData.responseData.translatedText;
+                    }
+                    
+                    newsHtml += `<div class="news-item">
+                        <a href="${link}" target="_blank">${title}</a>
+                    </div>`;
+                }
+                
+                document.getElementById("news-container").innerHTML = newsHtml || "Brak wiadomości.";
+            } catch (error) {
+                document.getElementById("news-container").innerHTML = "Nie udało się pobrać wiadomości. Sprawdź połączenie internetowe.";
+            }
+        }
+        
+        fetchNews();
+        setInterval(fetchNews, 3600000); // Aktualizacja co godzinę
+    </script>
+
+</body>
+</html>

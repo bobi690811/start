@@ -1,160 +1,306 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <style>
-        body { font-family: Arial, sans-serif; margin: 20px; background-color: #808080; }
-        h1 { font-size: 24px; text-align: center; }
-        .news-container { margin: 20px auto; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); max-width: 800px; }
-        .news-item { margin-bottom: 15px; padding: 10px; border-bottom: 1px solid #ccc; }
-        .news-item a { text-decoration: none; color: #0073e6; font-weight: bold; display: block; }
-    </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Strona Startowa</title>
+    <title>Nowoczesna Strona Startowa</title>
+    
     <style>
+        /* --- NOWOCZESNA STYLIZACJA --- */
         body {
-            background-image: url('https://source.unsplash.com/1920x1080/?sea');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            font-family: Arial, sans-serif;
-            text-align: center;
+            /* Nowoczesne, ciemne tło */
+            background-color: #1a202c; 
+            color: #e2e8f0; /* Jasny tekst na ciemnym tle */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
         }
+
+        /* Główny kontener - Flexbox dla układu kolumnowego */
         .container {
             display: flex;
-            justify-content: space-around;
-            align-items: flex-start;
-            margin: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
         }
+
+        /* Kolumna boczna (zegar) - 25% szerokości */
         .sidebar {
-            width: 20%;
+            width: 25%;
+            padding: 20px;
+            /* Subtelne tło dla sekcji bocznej */
+            background-color: rgba(255, 255, 255, 0.05); 
+            border-radius: 10px;
             text-align: center;
+            margin-right: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            position: sticky; /* Zegar zostaje widoczny przy przewijaniu */
+            top: 20px;
+            height: fit-content; /* Dopasowuje wysokość do zawartości */
         }
+
+        /* Główna treść (linki) - 75% szerokości */
         .content {
-            width: 70%;
+            width: 75%;
             text-align: left;
         }
-        .links {
+
+        /* Nagłówki sekcji (H2) - Kolorowe akcenty */
+        .content h2 {
+            border-bottom: 2px solid #4a90e2; /* Nowoczesny niebieski akcent */
+            padding-bottom: 8px;
+            margin-top: 30px;
+            font-size: 1.5em;
+            color: #4a90e2; 
+        }
+        
+        /* Styl dla sekcji wiadomości (na dole strony) */
+        .news-section {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        
+        .news-section > h2 {
+            border-bottom: 2px solid #9ae6b4; /* Zielony akcent dla nagłówka wiadomości */
+            padding-bottom: 8px;
+            font-size: 1.8em;
+            color: #9ae6b4; 
             margin-bottom: 20px;
         }
-        h2 {
-            border-bottom: 1px solid white;
-            padding-bottom: 5px;
-        }
-        .events {
-            margin-top: 40px;
+
+        /* Sekcja Linków */
+        .links {
+            margin-bottom: 40px;
             padding: 20px;
-            background: rgba(0, 0, 0, 0.6);
-            border-radius: 10px;
+            background-color: #2d3748; /* Lekko ciemniejsze tło dla sekcji linków */
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
+
+        /* Stylizacja listy linków */
+        .links ul {
+            list-style: none;
+            padding: 0;
+            display: flex; /* Układanie linków w siatce/obok siebie */
+            flex-wrap: wrap;
+            gap: 15px; /* Odstępy między linkami */
+        }
+
+        .links li {
+            background-color: #4a5568; /* Tło pojedynczego linku */
+            border-radius: 4px;
+            transition: background-color 0.2s;
+        }
+
+        .links li:hover {
+            background-color: #4a90e2; /* Akcent przy najechaniu (niebieski) */
+        }
+
+        .links a {
+            text-decoration: none;
+            color: #e2e8f0; 
+            font-weight: 500;
+            padding: 10px 15px;
+            display: block;
+        }
+        
+        /* Styl dla kontenera wiadomości */
+        .news-container {
+            margin: 20px 0;
+            padding: 20px;
+            background: #2d3748; 
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+        .news-item {
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #4a5568; 
+        }
+        .news-item a {
+            text-decoration: none;
+            color: #9ae6b4; /* Akcent zielonego koloru dla wiadomości */
+            font-weight: bold;
+            display: block;
+        }
+
+        /* Stylizacja zegara cyfrowego (pod analogowym) */
+        #time, #date {
+            margin-top: 10px;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #63b3ed; /* Jasnoniebieski */
+        }
+        
+        /* Nagłówek główny */
+        h1 {
+            text-align: center;
+            padding: 20px;
+            font-size: 2.5em;
+            color: #9ae6b4;
+        }
+        
     </style>
 </head>
 <body>
+    <h1>Strona Startowa - Dashboard</h1>
     <div class="container">
         <div class="sidebar">
-            <canvas id="clock" width="150" height="150"></canvas>
+            <canvas id="clock" width="250" height="250"></canvas>
             <p id="date"></p>
             <p id="time"></p>
         </div>
+        
         <div class="content">
-            <h2>~~~~~~~~~~~</h2>
-            <ul id="news"></ul>
             
             <div class="links">
-                <h2>---------</h2>
+                <h2>🔗 Linki Służbowe</h2>
                 <ul>
-                    <li><a href="http://10.6.1.8/intranet/"target="_blank">Intranet</a></li>
+                    <li><a href="http://10.6.1.8/intranet/" target="_blank">Intranet</a></li>
                     <li><a href="https://eskulapnt.uskp.local/Eskulap/Form" target="_blank">Eskulap</a></li>
-                    <li><a href="http://10.6.1.7/pmnkeam/form0.php?dok=f001&op=Karty%20ambulatoryjnego%20leczenia%20131-I" target="_blank">---J O D Y ---</a></li>
+                    <li><a href="http://10.6.1.7/pmnkeam/form0.php?dok=f001&op=Karty%20ambulatoryjnego%20leczenia%20131-I" target="_blank">Karty Ambulatoryjne</a></li>
                     <li><a href="https://gabinet.gov.pl/zaloguj/uzytkownik" target="_blank">Gabinet Gov</a></li>
                     <li><a href="https://xofigo.bayer.com/xofigo/index.jsp" target="_blank">Xofigo Bayer</a></li>
                     <li><a href="https://poczta.ump.edu.pl/#1" target="_blank">Poczta UMP</a></li>
-                    <li><a href="file://pm1.uskp.local/Profiles/roleksa/Documents/Rad.xlsx" target="_blank">rad</a></li>
+                    <li><a href="file://pm1.uskp.local/Profiles/roleksa/Documents/Rad.xlsx" target="_blank">Rad.xlsx</a></li>
                     <li><a href="https://www.zus.pl/ezus/logowanie" target="_blank">ZUS e-ZUS</a></li>
                     <li><a href="https://10.6.8.4/" target="_blank">CLININET</a></li>
                     <li><a href="http://10.6.8.15/iCentrum/index.php?page=" target="_blank">iCentrum</a></li>
                 </ul>
             </div>
+            
             <div class="links">
-                <h2>+++++++++</h2>
+                <h2>🎧 Rozrywka i Multimedia</h2>
                 <ul>
-		    <li><a href="https://drive.google.com/drive/my-drive" target="_blank">Google Drive</a></li>
+                    <li><a href="https://drive.google.com/drive/my-drive" target="_blank">Google Drive</a></li>
                     <li><a href="https://www.jazzradio.com/smoothjazz" target="_blank">Jazz Radio</a></li>
                     <li><a href="https://open.spotify.com/" target="_blank">Spotify</a></li>
-                    <li><a href="https://myradioonline.pl/tok-fm" target="_blank">Radio</a></li>
-<li><a href="https://chomikuj.pl/">Ch---</a></li>
+                    <li><a href="https://myradioonline.pl/tok-fm" target="_blank">Radio TOK FM</a></li>
+                    <li><a href="https://chomikuj.pl/">Chomikuj</a></li>
                 </ul>
             </div>
+            
             <div class="links">
-                <h2>Org----</h2>
+                <h2>📅 Organizacja</h2>
                 <ul>
                     <li><a href="https://calendar.google.com/calendar/u/0/r/month" target="_blank">Google Kalendarz</a></li>
                     <li><a href="https://accounts.evernote.com/login" target="_blank">Evernote</a></li>
                 </ul>
             </div>
+            
             <div class="links">
-                <h2>OStr==</h2>
+                <h2>🌐 Inne Usługi</h2>
                 <ul>
                     <li><a href="https://eu.mydlink.com/login" target="_blank">MyDlink</a></li>
                     <li><a href="https://emodul.eu/web/70659c94c1c5196c4e94b259ef0c75f1/home" target="_blank">eModul</a></li>
                 </ul>
             </div>
+            
             <div class="links">
-                <h2>TŁUMACZ</h2>
+                <h2>🗣️ Tłumacz</h2>
                 <ul>
                     <li><a href="https://translate.google.com/?sl=en&tl=pl&op=translate" target="_blank" rel="noopener noreferrer">
-    Otwórz Google Tłumacz (EN → PL)
-</a></li>
+                        Google Tłumacz (EN → PL)
+                    </a></li>
                 </ul>
             </div>
         </div>
     </div>
     
+    <div class="news-section">
+        <h2>📰 Aktualności</h2>
+        <div class="news-container" id="news-container">
+            <p>Ładowanie wiadomości...</p>
+        </div>
+    </div>
+
     <script>
+        // FUNKCJA ZEGARA
         function updateClock() {
             const canvas = document.getElementById("clock");
+            // Sprawdzenie, czy canvas istnieje (na wypadek problemów z ładowaniem)
+            if (!canvas) return;
+            
             const ctx = canvas.getContext("2d");
             const now = new Date();
             const hours = now.getHours();
             const minutes = now.getMinutes();
             const seconds = now.getSeconds();
+            const size = canvas.width; // 250
+            const center = size / 2; // 125
+            const radius = center - 10; // 115
             
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            // Czyszczenie i rysowanie tła
+            ctx.clearRect(0, 0, size, size);
+            
+            // Rysowanie obwodu zegara
             ctx.beginPath();
-            ctx.arc(75, 75, 70, 0, Math.PI * 2);
+            ctx.arc(center, center, radius, 0, Math.PI * 2);
+            ctx.strokeStyle = '#63b3ed'; // Jasnoniebieski obwód
+            ctx.lineWidth = 4;
             ctx.stroke();
             
-            function drawHand(length, angle, width) {
+            // Rysowanie punktów godzin
+            for (let i = 1; i <= 12; i++) {
+                const angle = (Math.PI / 6) * i - Math.PI / 2;
+                const x = center + (radius - 15) * Math.cos(angle);
+                const y = center + (radius - 15) * Math.sin(angle);
+                
+                ctx.beginPath();
+                ctx.arc(x, y, 3, 0, Math.PI * 2);
+                ctx.fillStyle = '#9ae6b4'; // Zielony punkt
+                ctx.fill();
+            }
+
+            // Funkcja do rysowania wskazówki
+            function drawHand(length, angle, width, color) {
                 ctx.beginPath();
                 ctx.lineWidth = width;
-                ctx.moveTo(75, 75);
-                ctx.lineTo(75 + length * Math.cos(angle - Math.PI / 2), 75 + length * Math.sin(angle - Math.PI / 2));
+                ctx.lineCap = 'round';
+                ctx.strokeStyle = color;
+                
+                ctx.moveTo(center, center);
+                // Konwersja kąta: (Math.PI / 2) to korekta, aby 0 było na górze
+                const x = center + length * Math.cos(angle - Math.PI / 2);
+                const y = center + length * Math.sin(angle - Math.PI / 2);
+                ctx.lineTo(x, y);
                 ctx.stroke();
             }
-            drawHand(30, (Math.PI / 6) * hours + (Math.PI / 360) * minutes, 4);
-            drawHand(45, (Math.PI / 30) * minutes, 3);
-            drawHand(50, (Math.PI / 30) * seconds, 2);
             
+            // Kąt dla wskazówki godzinowej
+            const hourAngle = (Math.PI / 6) * (hours % 12) + (Math.PI / 360) * minutes;
+            // Kąt dla wskazówki minutowej
+            const minuteAngle = (Math.PI / 30) * minutes + (Math.PI / 1800) * seconds;
+            // Kąt dla wskazówki sekundowej
+            const secondAngle = (Math.PI / 30) * seconds;
+            
+            // Rysowanie wskazówek (godzinowa, minutowa, sekundowa)
+            drawHand(radius * 0.5, hourAngle, 6, '#e2e8f0'); // Biała gruba
+            drawHand(radius * 0.7, minuteAngle, 4, '#e2e8f0'); // Biała średnia
+            drawHand(radius * 0.8, secondAngle, 2, '#9ae6b4'); // Zielona cienka (sekundowa)
+            
+            // Rysowanie środkowego bolca
+            ctx.beginPath();
+            ctx.arc(center, center, 5, 0, Math.PI * 2);
+            ctx.fillStyle = '#4a90e2';
+            ctx.fill();
+            
+            // Wyświetlanie daty i czasu cyfrowego
             document.getElementById("time").innerText = now.toLocaleTimeString("pl-PL");
             document.getElementById("date").innerText = now.toLocaleDateString("pl-PL", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
         }
+        
         setInterval(updateClock, 1000);
         updateClock();
-    </script>
-<h1>~~~~~~~~~~~</h1>
-    <div class="news-container" id="news-container">
-        <p>Ładowanie wiadomości...</p>
-    </div>
-
-
-    <script>
+        
+        // FUNKCJA POBIERANIA WIADOMOŚCI
         async function fetchNews() {
             try {
+                // Użycie proxy do ominięcia problemów CORS
                 const proxyUrl = "https://api.allorigins.win/raw?url=";
-                const rssUrl = "https://www.politico.eu/feed/"; // RSS dla wiadomości politycznych
+                const rssUrl = "https://www.politico.eu/feed/";
                 const response = await fetch(proxyUrl + encodeURIComponent(rssUrl));
                 if (!response.ok) throw new Error("Błąd sieci");
                 const text = await response.text();
@@ -169,11 +315,15 @@
                     let title = item.querySelector("title").textContent;
                     const link = item.querySelector("link").textContent;
                     
-                    // Tłumaczenie tytułów na język polski za pomocą API Google Translate
-                    const translateResponse = await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(title)}&langpair=en|pl`);
-                    const translateData = await translateResponse.json();
-                    if (translateData.responseData.translatedText) {
-                        title = translateData.responseData.translatedText;
+                    // UWAGA: Tłumaczenie tytułów (API mymemory) jest ZEWNĘTRZNYM elementem, który może przestać działać!
+                    try {
+                        const translateResponse = await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(title)}&langpair=en|pl`);
+                        const translateData = await translateResponse.json();
+                        if (translateData.responseData.translatedText && translateData.responseData.translatedText.toLowerCase() !== title.toLowerCase()) {
+                            title = translateData.responseData.translatedText;
+                        }
+                    } catch (e) {
+                        console.error("Błąd podczas próby tłumaczenia:", e);
                     }
                     
                     newsHtml += `<div class="news-item">
@@ -183,7 +333,7 @@
                 
                 document.getElementById("news-container").innerHTML = newsHtml || "Brak wiadomości.";
             } catch (error) {
-                document.getElementById("news-container").innerHTML = "Nie udało się pobrać wiadomości. Sprawdź połączenie internetowe.";
+                document.getElementById("news-container").innerHTML = "Nie udało się pobrać wiadomości (Błąd połączenia/API).";
             }
         }
         
